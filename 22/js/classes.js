@@ -3,16 +3,17 @@ export class Student {
     if (!name || !surname || !birthYear)
       throw new Error("Parameters are required");
 
+    const parsedBirthYear = parseInt(birthYear);
     if (
-      !Number.isInteger(+birthYear) ||
-      +birthYear > new Date().getFullYear() ||
-      new Date().getFullYear() < 0
+      isNaN(parsedBirthYear) ||
+      parsedBirthYear > new Date().getFullYear() ||
+      parsedBirthYear < 0
     )
       throw new Error("Invalid Birth Year");
 
     this.name = name;
     this.surname = surname;
-    this.birthYear = +birthYear;
+    this.birthYear = +parsedBirthYear;
     this.grades = [];
     this.attendance = Array.from({ length: 25 }, () => null);
   }
@@ -35,14 +36,9 @@ export class Student {
   }
 
   getAvgAttendance() {
-    let totalClasses = 0,
-      numVisits = 0;
-
-    for (const attendance of this.attendance) {
-      if (attendance === null) break;
-      totalClasses += 1;
-      if (attendance) numVisits += 1;
-    }
+    const classes = this.attendance.filter((val) => val !== null);
+    const totalClasses = classes.length;
+    const numVisits = classes.filter((val) => val === true).length;
 
     return totalClasses > 0 ? numVisits / totalClasses : 0;
   }
@@ -61,7 +57,7 @@ export class Student {
     const index = this.attendance.indexOf(null);
 
     if (index !== -1) {
-      this.attendance[index] = true;
+      this.attendance[index] = false;
     }
 
     return this;
