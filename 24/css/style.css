@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  font: 14px/1.5 "Trebuchet MS", sans-serif;
+  color: #2b3033;
+  background: #d7e8f5;
+}
+
+.container {
+  margin: 0 auto;
+  width: fit-content;
+  position: relative;
+}
+
+.form {
+  padding: 20px;
+}
+
+.ghost {
+  width: 105px;
+  height: 105px;
+  background: no-repeat url(../img/ghost.svg);
+  background-size: 100px 100px;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  animation-name: slide;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+}
+
+@keyframes slide {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: right bottom;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
