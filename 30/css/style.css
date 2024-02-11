@@ -1,0 +1,82 @@
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.slider__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  aspect-ratio: 1/1;
+}
+
+.slider__item {
+  width: 100%;
+  position: absolute;
+  transition: 0.3s ease;
+}
+
+.slider__image {
+  display: block;
+  width: 100%;
+}
+
+.slider__image.current {
+  transform: translateX(0%);
+}
+
+.slider__image.prev {
+  transform: translateX(-100%);
+}
+
+.slider__image.next {
+  transform: translateX(100%);
+}
+
+.slider__btn {
+  position: absolute;
+  border: none;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.slider__btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.slider__btn::before {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  top: 50%;
+  left: 50%;
+}
+
+.slider__btn-next {
+  right: 0;
+}
+
+.slider__btn-next::before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.slider__btn-prev {
+  left: 0;
+}
+
+.slider__btn-prev::before {
+  transform: translate(-50%, -50%) rotate(135deg);
+}
